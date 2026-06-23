@@ -21,8 +21,7 @@ import java.util.List;
 @RequestMapping("/categories")
 // add annotation to allow cross site origin requests
 @CrossOrigin
-public class CategoriesController
-{
+public class CategoriesController {
     private CategoryService categoryService;
     private ProductService productService;
 
@@ -47,7 +46,11 @@ public class CategoriesController
     public Category getById(@PathVariable int id)
     {
         // get the category by id
-        return categoryService.getById(id);
+        Category getId = categoryService.getById(id);
+        if (getId == null){
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND," Category not found");
+        }
+        return getId;
     }
 
     // the url to return all products in category 1 would look like this
@@ -63,7 +66,7 @@ public class CategoriesController
     // add annotation to ensure that only an ADMIN can call this function
     @PostMapping
     @PreAuthorize("hasRole('ADMIN')")
-    public ResponseEntity<Category> addCategory( @Valid @RequestBody Category category)
+    public ResponseEntity<Category> addCategory(@RequestBody Category category)
     {
         // insert the category and return it with status 201 Created
         Category addedCategory = categoryService.create(category);
@@ -84,7 +87,7 @@ public class CategoriesController
 
     // add annotation to call this method for a DELETE action - the url path must include the categoryId
     // add annotation to ensure that only an ADMIN can call this function
-    @DeleteMapping("/{Id}")
+    @DeleteMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<Void> deleteCategory(@PathVariable int id)
     {
