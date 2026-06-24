@@ -13,8 +13,7 @@ import java.util.List;
 @RestController
 @RequestMapping("products")
 @CrossOrigin
-public class ProductsController
-{
+public class ProductsController {
     private final ProductService productService;
 
     public ProductsController(ProductService productService)
@@ -22,7 +21,7 @@ public class ProductsController
         this.productService = productService;
     }
 
-    @GetMapping("")
+    @GetMapping("/{id}")
     @PreAuthorize("permitAll()")
     public List<Product> search(@RequestParam(name="cat", required = false) Integer categoryId,
                                 @RequestParam(name="minPrice", required = false) Double minPrice,
@@ -32,7 +31,7 @@ public class ProductsController
         return productService.search(categoryId, minPrice, maxPrice, subCategory);
     }
 
-    @GetMapping("{id}")
+    @GetMapping("")
     @PreAuthorize("permitAll()")
     public Product getById(@PathVariable int id)
     {
