@@ -21,7 +21,7 @@ public class ProductsController {
         this.productService = productService;
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("")
     @PreAuthorize("permitAll()")
     public List<Product> search(@RequestParam(name="cat", required = false) Integer categoryId,
                                 @RequestParam(name="minPrice", required = false) Double minPrice,
@@ -31,7 +31,7 @@ public class ProductsController {
         return productService.search(categoryId, minPrice, maxPrice, subCategory);
     }
 
-    @GetMapping("")
+    @GetMapping("{id}")
     @PreAuthorize("permitAll()")
     public Product getById(@PathVariable int id)
     {
