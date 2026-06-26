@@ -58,7 +58,6 @@ public class ProductService
         existing.setStock(product.getStock());
         return productRepository.save(existing);
     }
-
     public void delete(int productId)
     {
         productRepository.deleteById(productId);
