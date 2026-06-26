@@ -1,3 +1,6 @@
+<img width="530" height="319" alt="download" src="https://github.com/user-attachments/assets/bd41c93c-52db-47fa-93a5-6228618717c8" />
+<img width="511" height="242" alt="download (1)" src="https://github.com/user-attachments/assets/5bbdf180-dc98-4c8f-894c-516a6e3309de" />
+<img width="499" height="232" alt="download (3)" src="https://github.com/user-attachments/assets/a6544b63-b860-466d-ba76-58589f695c39" />
 
 # Project Title
 Record Shop API
