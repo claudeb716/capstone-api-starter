@@ -17,6 +17,8 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 @ExtendWith(MockitoExtension.class)
@@ -57,10 +59,23 @@ class ProductServiceTest {
         listOfProducts.add(product3);
         when(productRepository.findAll()).thenReturn(listOfProducts);
         //Act
-List<Product> found = productService.search(null, null, null, null);
+        List<Product> found = productService.search(null, null, null, null);
         //Assert
         assertNotNull(found);
         assertEquals(3, found.size());
 
+    }
+    @Test
+    void updateProduct_ReturnUpdateStock(){
+        //Arrange
+        product1.setStock(50);
+        product2.setStock(100);
+        when(productRepository.findById(1)).thenReturn(Optional.of(product1));
+        when(productRepository.save(any(Product.class))).thenReturn(product1);
+        //Act
+        Product found = productService.update(1, product2);
+        //Assert
+        assertNotNull(found);
+        assertEquals(100, found.getStock());
     }
 }
