@@ -6,7 +6,6 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 import org.yearup.models.Category;
-import org.yearup.models.Product;
 import org.yearup.repository.CategoryRepository;
 
 import java.util.Optional;
@@ -21,6 +20,7 @@ class CategoryServiceTest {
 
     @InjectMocks // wired to real CategoryService class
     private CategoryService categoryService;
+
     @Test
     void findById_MissingId_ReturnsNull(){
         //Arrange
